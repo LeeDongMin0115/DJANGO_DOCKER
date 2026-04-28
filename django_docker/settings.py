@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['43.202.61.194']
+ALLOWED_HOSTS = ["43.202.61.194", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -79,8 +79,12 @@ WSGI_APPLICATION = 'django_docker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'rdsdb',
+        'USER' : 'django',
+        'PASSWORD' : os.getenv('LOCAR_RDSDB_PASSWORD'),
+        'HOST' : 'localhost',
+        'PORT' : '3306',
     }
 }
 
